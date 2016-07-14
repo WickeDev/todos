@@ -1,6 +1,6 @@
 import * as uuid from 'node-uuid';
 
-const fakeDatabase = {
+export const fakeDatabase = {
     todos: [{
         id: uuid.v4(),
         text: 'hey',
@@ -35,4 +35,24 @@ export const fetchTodos = (filter) =>
             default:
                 throw new Error(`UnKnown filter: ${filter}`);
         }
+    });
+
+export const addTodo = (text) =>
+    delay(500).then(() => {
+        const todo = {
+            id: uuid.v4(),
+            text,
+            completed: false,
+        };
+
+        fakeDatabase.todos.push(todo);
+
+        return todo;
+    });
+
+export const toggleTodo = (id) =>
+    delay(500).then(() => {
+        const todo = fakeDatabase.todos.find(t => t.id === id);
+        todo.completed = !todo.completed;
+        return todo;
     });
