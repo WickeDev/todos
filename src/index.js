@@ -1,16 +1,21 @@
 import 'babel-polyfill';
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import todoApp from './reducers';
-import App from './components/App';
+import 'eventsource-polyfill';
+import 'html5-history-api';
 
-const store = createStore(todoApp);
+import * as React from 'react';
+import {render} from 'react-dom';
+
+import configureStore from './configureStore';
+import Root from './components/Root';
+import {fetchTodos} from './api';
+
+fetchTodos('all').then(todos =>
+    console.info(todos)
+);
+
+const store = configureStore();
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+    <Root store={store}/>,
+    document.getElementById('root')
 );

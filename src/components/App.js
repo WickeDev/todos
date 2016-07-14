@@ -1,14 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import Footer from './Footer';
-import AddTodo from './AddTodo';
-import VisibleTodoList from './VisibleTodoList';
+import ReduxAddTodo from './AddTodo';
+import ReduxVisibleTodoList from './VisibleTodoList';
 
 const App = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
+    <div>
+        <ReduxAddTodo/>
+        <ReduxVisibleTodoList/>
+        <Footer/>
+    </div>
 );
 
 export default App;
